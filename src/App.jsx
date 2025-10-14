@@ -5,8 +5,9 @@ import Footer from './components/Footer.jsx'
 import Origin from './components/Origin.jsx'
 import FAQ from './components/FAQ.jsx'
 import Discover from './components/Discover.jsx'
+import Login from './components/Login.jsx'
 
-function App() {
+function Home() {
   return (
     <>
       <Navbar />
@@ -20,6 +21,17 @@ function App() {
       {/* <Footer /> */}
       
     </>
+  )
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={ <Home />}/>
+        <Route path="/login" element={ <Login />}/>
+      </Routes>
+    </Router>
   )
 }
 
