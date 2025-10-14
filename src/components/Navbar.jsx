@@ -2,14 +2,18 @@ import { Menu, X, ShoppingBag } from "lucide-react"
 import icon from "../assets/icon.png"
 import { navItems } from "../constants"
 
+import CartModal from "./CartModal"
+
 import { useState } from "react"
 
-function Navbar() {
+function Navbar({ onCartToggle }) {
     const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
+    const [cartOpen, setCartOpen] = useState(false);
 
     const toggleNavbar = () => {
         setMobileDrawerOpen(!mobileDrawerOpen);
     }
+
     return (
         <nav className="nav-bar">
             <div className="nav-container">
@@ -28,7 +32,9 @@ function Navbar() {
                     </ul>
 
                     <div className="nav-cart">
-                        <a href="#" className="size-5 text-[#A20100]"><ShoppingBag /></a>
+                        <button onClick={onCartToggle} className="size-5 text-[#A20100]">
+                            <ShoppingBag />
+                        </button>
                     </div>
 
                     <div className="lg:hidden md:flex flex-col justify-end">
@@ -36,7 +42,7 @@ function Navbar() {
                             {mobileDrawerOpen ? <X /> : <Menu />}
                         </button>
                     </div>
-                    
+                        
                 </div>
 
                 {mobileDrawerOpen && (
@@ -50,14 +56,14 @@ function Navbar() {
                         </ul>
 
                         <div className="felx-space-x-6">
-                            <a href="#" className="cart">Cart</a>
+                            <button onClick={onCartToggle} className="cart">Cart</button>
                         </div>
                     </div>
                 )}
 
             </div>
         </nav>
-    )
+    );
 }
 
 export default Navbar

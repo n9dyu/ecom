@@ -1,16 +1,25 @@
-import About from './components/About.jsx'
-import HeroSection from './components/HeroSection.jsx'
-import Navbar from './components/Navbar.jsx'
-import Footer from './components/Footer.jsx'
-import Origin from './components/Origin.jsx'
-import FAQ from './components/FAQ.jsx'
-import Discover from './components/Discover.jsx'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
+
 import Login from './components/Login.jsx'
 
+import Navbar from './components/Navbar.jsx'
+import CartModal from './components/CartModal.jsx'
+
+import HeroSection from './components/HeroSection.jsx'
+import About from './components/About.jsx'
+import Discover from './components/Discover.jsx'
+import Origin from './components/Origin.jsx'
+import FAQ from './components/FAQ.jsx'
+import Footer from './components/Footer.jsx'
+
 function Home() {
+  const [cartOpen, setCartOpen] = useState(false);
+
   return (
     <>
-      <Navbar />
+      <Navbar onCartToggle={() => setCartOpen(!cartOpen)}/>
+
       <div className="max-w-7xl mx-auto pt-20 px-6">
         <HeroSection />
       </div>
@@ -19,7 +28,7 @@ function Home() {
       <Origin/>
       <FAQ/>
       {/* <Footer /> */}
-      
+      <CartModal isOpen={cartOpen} onClose={() => setCartOpen(false)}/>
     </>
   )
 }

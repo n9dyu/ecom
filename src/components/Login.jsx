@@ -9,10 +9,9 @@ function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // Simple example logic — replace with real validation later
     if (email === 'admin@example.com' && password === '1234') {
       alert('Login successful!');
-      navigate('/'); // Redirects to homepage
+      navigate('/'); 
     } else {
       alert('Invalid credentials!');
     }
