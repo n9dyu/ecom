@@ -1,0 +1,284 @@
+@import "tailwindcss";
+@tailwind utilities;
+
+@font-face {
+  font-family: "Coolvetica";
+  src: url("/fonts/Coolvetica.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "BirdsOfParadise";
+  src: url("/fonts/BirdsofParadise.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HelveticaCustom";
+  src: url("/fonts/Helvetica.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+:root {
+  font-family: "Coolvetica", sans-serif;
+  color-scheme: light;
+  --primary: hsl(0, 100%, 32%);
+}
+
+/* NAVIGATION BAR */
+
+.nav-bar {
+  @apply sticky top-0 z-50 py-3 backdrop-blur-lg
+}
+
+.nav-container {
+  @apply container px-4 mx-auto relative text-sm
+}
+
+.nav-logo {
+  @apply flex items-center flex-shrink-0
+}
+
+.nav-list {
+  @apply hidden lg:flex ml-14 space-x-12 list-none text-[#A20100] 
+}
+
+.nav-cart {
+  @apply hidden lg:flex justify-center space-x-12 items-center
+}
+
+.drawer-bg {
+  @apply fixed right-0 z-20 backdrop-blur-lg w-full p-12 flex flex-col justify-center items-center lg:hidden
+}
+
+.cart {
+  @apply py-2 px-3 border rounded-md
+}
+
+
+/* HERO SECTION */
+
+.hero-section {
+  @apply min-h-screen
+}
+
+.hero-container {
+  @apply relative w-screen flex flex-col items-start mt-6 lg:mt-20 text-[#241C1C]
+}
+
+.hero-container h1 {
+  @apply text-2xl sm:text-4xl lg:text-5xl tracking-wide z-20 relative
+}
+
+.hero-container p {
+  @apply mt-6 sm:mt-10 text-sm sm:text-lg lg:text-xl max-w-3xl z-20 relative
+}
+
+.hero-btn {
+  @apply mt-10 bg-[#A20100] text-white italic px-6 py-2 rounded-full shadow-[0px_4px_0px_0px_rgba(0,0,0,0.3)] hover:bg-pink-400 transition
+}
+
+.hero-image {
+  @apply absolute bottom-0 left-0 w-full z-10
+}
+
+.hero-image img {
+  @apply absolute inset-x-0 bottom-20 w-screen h-auto z-10 pointer-events-none
+}
+
+
+/* ABOUT SECTION */
+
+.about-section {
+  @apply relative mt-20 min-h-[900px] bg-[radial-gradient(circle_at_center,_#FFB7B7_0%,_#A20100_40%,_#A20100_100%)] text-white
+}
+
+.about-section h2 {
+  @apply text-3xl sm:text-5xl lg:text-6xl mt-10 lg:mt-20 italic font-serif
+}
+
+.about-container {
+  @apply relative flex justify-center items-center mt-16
+}
+
+.about-container img {
+  @apply max-h-[400px] lg:max-h-[500px] z-10
+}
+
+.about-container p {
+  @apply text-lg leading-tight
+}
+
+.about-container span {
+  @apply text-7xl
+}
+
+.features-card {
+  @apply grid grid-cols-2 md:grid-cols-4 gap-8 mt-24 px-10 text-center bottom-0
+}
+
+.features {
+  @apply flex flex-col items-center
+}
+
+.features p {
+  @apply text-[14px] text-neutral-200 max-w-[200px]
+}
+
+.comment-card-left {
+  @apply absolute left-10 max-w-xs bg-white text-[#241C1C] p-6 rounded-md shadow-md
+}
+
+.comment-card-right {
+  @apply absolute right-10 max-w-xs bg-white text-[#241C1C] p-6 rounded-md shadow-md text-end
+}
+
+
+/* MAIN SECTION */
+
+.discover-section {
+  @apply min-h-screen bg-white relative overflow-hidden
+}
+
+.discover-section img {
+  @apply w-full object-cover
+}
+
+.discover-container {
+  @apply max-w-full mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 py-12 px-15 items-center
+}
+
+.flavor-list {
+  @apply flex flex-col gap-4 text-2xl items-center
+}
+
+.flavor-list h2 {
+  @apply text-[#A20100] text-7xl mb-4;
+  font-family: BirdsofParadise, serif;
+}
+
+.flavor-list button {
+  @apply text-start
+}
+
+.flavor {
+  @apply flex justify-center relative
+}
+
+.add-btn {
+  @apply absolute -bottom-8 bg-white rounded-full shadow-md w-12 h-12 flex items-center justify-center z-20 cursor-pointer
+}
+
+.details-container {
+  @apply flex flex-col gap-6 items-center
+}
+
+.details-container h2 {
+  @apply text-[#A20100] text-7xl;
+  font-family: BirdsofParadise, serif;
+}
+
+.details-container p {
+  @apply text-[#241C1C] leading-tight text-2xl text-end my-10 ml-10
+}
+
+.tag-card {
+  @apply relative w-48
+}
+
+.tag-content {
+  @apply absolute inset-0 flex flex-col items-center justify-center px-4 text-sm
+}
+
+.tag-content span {
+  @apply text-[#A20100]
+}
+
+
+/* ORIGIN SECTION */
+
+.origin-section {
+  @apply min-h-screen bg-white relative overflow-hidden
+}
+
+.origin-section img {
+  @apply w-full object-cover bottom-0
+}
+
+.origin-container {
+  @apply max-w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 py-12 px-40 items-center
+}
+
+.origin-info {
+  @apply flex flex-col gap-4 text-2xl items-start
+}
+
+.origin-info h2 {
+  @apply text-[#A20100] text-8xl mb-4;
+  font-family: BirdsofParadise, serif;
+}
+
+.origin-info button {
+  @apply text-start
+}
+
+.milk {
+  @apply flex justify-center relative
+}
+
+.milk-photo {
+  @apply absolute -bottom-8 bg-white shadow-md w-100 h-auto flex items-center justify-center z-10
+}
+
+
+/* FAQ SECTION */
+
+.faq-section {
+  @apply min-h-1/2 bg-[linear-gradient(to_bottom,_#A20100_0%,_#A20100_20%,_#FFB7B7_100%)] text-white flex flex-col
+}
+
+.faq-container {
+  @apply max-w-3/4 mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 flex-grow
+}
+
+.faq-title h1 {
+  @apply text-4xl lg:text-6xl leading-13 mb-12
+}
+
+.send-us-card {
+  @apply bg-white text-[#241C1C] rounded-lg shadow-md p-6
+}
+
+.send-us-card h2 {
+  @apply text-3xl mb-2
+}
+
+.send-us-card p {
+  @apply text-gray-600 mb-14;
+  font-family: Helvetica, serif;
+}
+
+.send-us-btn {
+  @apply inline-block bg-[#A20100] text-xl text-white px-15 py-5 rounded-lg hover:bg-red-700 transition
+}
+
+.question-container {
+  @apply flex flex-col gap-4 mt-8
+}
+
+.question-card {
+  @apply bg-white text-[#241C1C] rounded-lg shadow-md cursor-pointer py-4
+}
+
+.question-card-answer {
+  @apply px-4 pb-4 text-gray-700 text-sm; 
+  font-family: Helvetica, serif;
+}
+
+.chevron {
+  @apply w-6 h-6 transition-transform duration-200
+}
