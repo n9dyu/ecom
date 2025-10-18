@@ -1,51 +1,91 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Eye, EyeOff } from "lucide-react";
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
+    setErrorMessage("");
 
-    if (email === 'admin@example.com' && password === '1234') {
-      alert('Login successful!');
-      navigate('/'); 
+    let storedUser;
+    try {
+      storedUser = JSON.parse(localStorage.getItem("userData"));
+    } catch {
+      storedUser = null;
+    }
+
+    if (!storedUser) {
+      setErrorMessage("No account found. Please register first.");
+      return;
+    }
+
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
+
+    if (
+      storedUser.email === trimmedEmail &&
+      storedUser.password === trimmedPassword
+    ) {
+      navigate("/home");
     } else {
-      alert('Invalid credentials!');
+      setErrorMessage("Invalid email or password.");
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <form 
-        onSubmit={handleLogin}
-        className="bg-white p-8 rounded-lg shadow-lg w-96"
-      >
-        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+    <div className="login-card">
+      <form onSubmit = {handleLogin}>
+        <h1>Login</h1>
+        
+        <label>Email</label>
         <input
           type="email"
+          autoComplete='email'
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full p-2 border rounded mb-4"
           required
         />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-2 border rounded mb-6"
-          required
-        />
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
-        >
+
+        <label>Password</label>
+        <div className="relative">
+          <input
+            type={showPassword ? "text" : "password"}
+            autoComplete='current-password'
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button
+            type="button"
+            className="reg-password"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+          </button>
+        </div>
+
+        {errorMessage && (
+          <p className="error-text" style={{ color: "red", fontSize: "0.85rem" }}>
+            {errorMessage}
+          </p>
+        )}
+
+        <button type="submit" className="login-btn">
           Login
         </button>
+
+        <p className="create-acc">
+          New here?{" "}
+          <span onClick={() => navigate("/register")}>Create an account</span>
+        </p>
       </form>
     </div>
   );

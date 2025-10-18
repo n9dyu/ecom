@@ -30,9 +30,13 @@
 }
 
 
-/* REGISTER */
+/* REGISTER & LOGIN */
 
 .register-card {
+  @apply flex justify-center items-center min-h-screen bg-[#fff7f7] px-6
+}
+
+.login-card {
   @apply flex justify-center items-center min-h-screen bg-[#fff7f7] px-6
 }
 
@@ -40,7 +44,16 @@
   @apply bg-white shadow-2xl rounded-2xl p-10 w-full max-w-md
 }
 
+.login-card form {
+   @apply bg-white shadow-2xl rounded-2xl p-10 w-full max-w-md
+}
+
 .register-card h1 {
+  @apply text-5xl text-[#A20100] mb-10 text-center;
+  font-family: "BirdsOfParadise";
+}
+
+.login-card h1 {
   @apply text-5xl text-[#A20100] mb-10 text-center;
   font-family: "BirdsOfParadise";
 }
@@ -49,7 +62,15 @@
   @apply block mb-2 
 }
 
+.login-card label {
+  @apply block mb-2 
+}
+
 .register-card input, select {
+  @apply w-full border rounded-lg px-3 py-2 mb-6 font-light
+}
+
+.login-card input {
   @apply w-full border rounded-lg px-3 py-2 mb-6 font-light
 }
 
@@ -61,8 +82,32 @@
   @apply w-full bg-[#A20100] text-white py-3 rounded-full hover:bg-[#8b0100] transition
 }
 
+.login-btn {
+  @apply w-full bg-[#A20100] text-white py-3 rounded-full hover:bg-[#8b0100] transition
+}
+
 .reg-password {
   @apply absolute right-3 top-3 text-gray-500 hover:text-[#A20100]
+}
+
+.register-card span {
+  @apply text-[#A20100] cursor-pointer hover:underline
+}
+
+.login-card span {
+  @apply text-[#A20100] cursor-pointer hover:underline
+}
+
+.create-acc {
+  @apply text-center text-sm mt-4
+}
+
+.login-card p {
+  @apply text-center text-sm mt-4
+}
+
+.error-text {
+  @apply text-red-600 mt-0 mb-4 text-center text-sm
 }
 
 /* NAVIGATION BAR */

@@ -8,26 +8,70 @@ function Register() {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
+        password: "",
         address: "",
         phone: "+63",
         paymentMethod: "GCash",
         paymentDetails: "",
     });
 
+    const [confirmPassword, setConfirmPassword] = useState("");
+
     const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+
+        if (name === "name") {
+            const validName = value.replace(/[^a-zA-Z\s\-.]/g, "");
+            setFormData((prev) => ({ ...prev, name: validName }));
+            return;
+        }
+
+        if (name === "phone") {
+            const numbersOnly = value.replace(/[^0-9+]/g, "");
+            if (!numbersOnly.startsWith("+63")) return; 
+            if (numbersOnly.length <= 13) {
+                setFormData((prev) => ({ ...prev, phone: numbersOnly }));
+            }
+            return;
+        }
+
+        if (name === "paymentDetails") {
+            if (
+                formData.paymentMethod === "GCash" ||
+                formData.paymentMethod === "Credit/Debit Card" ||
+                formData.paymentMethod === "Bank Transfer"
+            ) {
+                const numericValue = value.replace(/[^\d\s-]/g, "");
+                setFormData((prev) => ({ ...prev, paymentDetails: numericValue }));
+                return;
+            }
+        }
+
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        localStorage.setItem("userData", JSON.stringify(formData));
+        if (formData.password !== confirmPassword) {
+            setErrorMessage("Passwords do not match.");
+            return;
+        }
+        setErrorMessage("");
+
+        localStorage.setItem("userData", JSON.stringify({
+            ...formData,
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            address: formData.address.trim(),
+        }));
 
         alert("Account registered successfully!");
-        navigate("/"); 
+        navigate("/login"); 
     };
 
     const getPaymentPlaceholder = () => {
@@ -55,6 +99,7 @@ function Register() {
                     value={formData.name}
                     onChange={handleChange}
                     required
+                    minLength={4}
                 />
 
                 <label>Email</label>
@@ -64,6 +109,7 @@ function Register() {
                     value={formData.email}
                     onChange={handleChange}
                     required
+                    minLength={8}
                 />
 
                 <label>Password</label>
@@ -78,6 +124,21 @@ function Register() {
                     />
                     <button type="button" className="reg-password" onClick={() => setShowPassword(!showPassword)}>
                         {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                </div>
+
+                <label>Confirm Password</label>
+                <div className="relative">
+                    <input
+                        type={showConfirmPassword ? "text" : "password"}
+                        name="confirmPassword"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        required
+                        minLength={8}
+                    />
+                    <button type="button" className="reg-password" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                        {showConfirmPassword ? (<EyeOff size={18} />) : (<Eye size={18} />)}
                     </button>
                 </div>
 
@@ -96,25 +157,49 @@ function Register() {
                     value={formData.phone}
                     onChange={handleChange}
                     required
+                    pattern="\+63[0-9]{10,}$"
                 />
 
                 <label>Payment Method</label>
-                <select name="paymentMethod" value = {formData.paymentMethod} onChange = { handleChange }>
-                    <option value="GCash">GCash</option>
-                    <option value="Credit/Debit Card">Credit/Debit Card</option>
-                    <option value="Bank Transfer">Bank Transfer</option>
+                <select
+                name="paymentMethod"
+                value={formData.paymentMethod}
+                onChange={handleChange}
+                >
+                <option value="GCash">GCash</option>
+                <option value="Credit/Debit Card">Credit/Debit Card</option>
+                <option value="Bank Transfer">Bank Transfer</option>
                 </select>
 
-                <label>Payment Details (e.g., GCash number)</label>
+                <label>
+                    {formData.paymentMethod === "GCash"
+                        ? "GCash Number"
+                        : formData.paymentMethod === "Credit/Debit Card"
+                        ? "Card Number"
+                        : "Bank Account Number"
+                    }
+                </label>
                 <input
                     type="text"
                     name="paymentDetails"
                     value={formData.paymentDetails}
                     onChange={handleChange}
+                    placeholder={getPaymentPlaceholder()}
                     required
                 />
 
+                {errorMessage && (
+                    <p className="error-text">
+                        {errorMessage}
+                    </p>
+                )}
+
                 <button type="submit" className="register-btn">Register</button>
+
+                <p className="create-acc">
+                    Already have an account?{" "}
+                    <span onClick={() => navigate("/login")}>Log in</span>
+                </p>
             </form>
         </div>
   );
