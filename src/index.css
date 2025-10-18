@@ -29,6 +29,42 @@
   --primary: hsl(0, 100%, 32%);
 }
 
+
+/* REGISTER */
+
+.register-card {
+  @apply flex justify-center items-center min-h-screen bg-[#fff7f7] px-6
+}
+
+.register-card form {
+  @apply bg-white shadow-2xl rounded-2xl p-10 w-full max-w-md
+}
+
+.register-card h1 {
+  @apply text-5xl text-[#A20100] mb-10 text-center;
+  font-family: "BirdsOfParadise";
+}
+
+.register-card label {
+  @apply block mb-2 
+}
+
+.register-card input, select {
+  @apply w-full border rounded-lg px-3 py-2 mb-6 font-light
+}
+
+.register-card textarea {
+  @apply w-full border rounded-lg px-3 py-2 mb-4
+}
+
+.register-btn {
+  @apply w-full bg-[#A20100] text-white py-3 rounded-full hover:bg-[#8b0100] transition
+}
+
+.reg-password {
+  @apply absolute right-3 top-3 text-gray-500 hover:text-[#A20100]
+}
+
 /* NAVIGATION BAR */
 
 .nav-bar {
@@ -313,4 +349,8 @@
 
 .shipping-details {
   @apply text-sm text-gray-700 mb-6
+}
+
+.checkout-btn {
+  @apply bg-[#A20100] text-white py-3 rounded-full text-lg hover:bg-[#8b0100] transition-all
 }

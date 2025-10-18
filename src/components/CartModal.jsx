@@ -47,9 +47,9 @@ const CartModal = ({ isOpen, onClose }) => {
                             BERRY SHORTCAKE DREAM
                             </h3>
                             <div className="flex items-center gap-3 text-xl">
-                            <button className="border px-3 py-1">-</button>
+                            <button className=" px-3 py-1">-</button>
                             <span>2</span>
-                            <button className="border px-3 py-1">+</button>
+                            <button className="px-3 py-1">+</button>
                             </div>
                             <p className="mt-2 text-sm font-semibold">₱240</p>
                         </div>
@@ -67,7 +67,7 @@ const CartModal = ({ isOpen, onClose }) => {
                         <span>₱520</span>
                     </div>
 
-                    <button className="bg-[#A20100] text-white py-3 rounded-full text-lg font-semibold hover:bg-[#8b0100] transition-all">
+                    <button className="checkout-btn">
                         CHECK OUT
                     </button>
                 </div>

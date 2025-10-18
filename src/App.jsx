@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 
 import Login from './components/Login.jsx'
+import Register from './components/Register.jsx';
 
 import Navbar from './components/Navbar.jsx'
 import CartModal from './components/CartModal.jsx'
@@ -27,7 +28,6 @@ function Home() {
       <Discover />
       <Origin/>
       <FAQ/>
-      {/* <Footer /> */}
       <CartModal isOpen={cartOpen} onClose={() => setCartOpen(false)}/>
     </>
   )
@@ -39,6 +39,7 @@ function App() {
       <Routes>
         <Route path="/" element={ <Home />}/>
         <Route path="/login" element={ <Login />}/>
+        <Route path="/register" element={ <Register />}/>
       </Routes>
     </Router>
   )
