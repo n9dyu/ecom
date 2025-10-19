@@ -41,7 +41,7 @@ const CartModal = ({ isOpen, onClose, cartItems = [], onQuantityChange, onRemove
         <div className="cart-screen" onClick={onClose}>
             <div className="cart-container" onClick={(e) => e.stopPropagation()}>     
 
-                <button className="close-btn" onClick={onClose}>
+                <button className="close-btn cursor-pointer" onClick={onClose}>
                     <X size={24} />
                 </button>
 
@@ -85,14 +85,14 @@ const CartModal = ({ isOpen, onClose, cartItems = [], onQuantityChange, onRemove
                                     <h3>{item.name}</h3>
 
                                     <div className="quantity">
-                                        <button onClick={() => onQuantityChange(item.name, "decrease")}>-</button>
+                                        <button className="cursor-pointer" onClick={() => onQuantityChange(item.name, "decrease")}>-</button>
                                         <span>{item.quantity}</span>
-                                        <button onClick={() => onQuantityChange(item.name, "increase")}>+</button>
+                                        <button className="cursor-pointer" onClick={() => onQuantityChange(item.name, "increase")}>+</button>
                                     </div>
 
                                     <p className="price">₱{Number(item.price || 0) * item.quantity}</p>
 
-                                    <button className="text-[#A20100]" onClick={() => onRemoveItem(item.name)}>
+                                    <button className="text-[#A20100] cursor-pointer" onClick={() => onRemoveItem(item.name)}>
                                         Delete
                                     </button>
                                 </div>
@@ -114,10 +114,10 @@ const CartModal = ({ isOpen, onClose, cartItems = [], onQuantityChange, onRemove
                         <button 
                             onClick={handleCheckout}
                             disabled={cartItems.length === 0}
-                            className={`checkout-btn w-full py-2 rounded ${
+                            className={`checkout-btn w-full py-2 rounded  ${
                                 cartItems.length === 0
                                 ? "bg-gray-400 cursor-not-allowed"
-                                : "bg-blue-600 hover:bg-blue-700"
+                                : "bg-blue-600 hover:bg-blue-700 cursor-pointer"
                             } text-white`}>
                             CHECK OUT
                         </button>

@@ -115,7 +115,7 @@ const ProfileModal = ({ isOpen, onClose }) => {
         <div className="profile-screen" onClick={onClose} >
             <div className="profile-card" onClick={(e) => e.stopPropagation()} >
 
-                <button className="close-btn" onClick={onClose}>
+                <button className="close-btn cursor-pointer" onClick={onClose}>
                     <X size={24} />
                 </button>
 
@@ -168,7 +168,7 @@ const ProfileModal = ({ isOpen, onClose }) => {
 
                     <div>
                         <label>Payment Method:</label>
-                        <select name="paymentMethod" value={userData.paymentMethod} onChange={handleChange}>
+                        <select className="cursor-pointer" name="paymentMethod" value={userData.paymentMethod} onChange={handleChange}>
                             <option value="Cash on Delivery">Cash on Delivery</option>
                             <option value="GCash">GCash</option>
                             <option value="Credit/Debit Card">Credit/Debit Card</option>
@@ -191,8 +191,8 @@ const ProfileModal = ({ isOpen, onClose }) => {
                 </div>
 
                 <div className="profile-btn">
-                    <button onClick={onClose} className="cancel"> Cancel </button>
-                    <button onClick={handleSave} className="save"> Save </button>
+                    <button onClick={onClose} className="cancel cursor-pointer"> Cancel </button>
+                    <button onClick={handleSave} className="save cursor-pointer"> Save </button>
                 </div>
             </div>
         </div>

@@ -16,10 +16,10 @@ import mintchoco from "../assets/flavors/mintchoco.png"
 import vanilla from "../assets/flavors/vanilla.png"
 
 export const navItems = [
-  { label: "About", href: "#about" },
-  { label: "Discover", href: "#discover" },
-  { label: "Origin", href: "#origin" },
-  { label: "FAQ", href: "#faq" },
+  { label: "", href: "#about" },
+  { label: "", href: "#discover" },
+  { label: "", href: "#origin" },
+  { label: "", href: "#faq" },
 ];
 
 export const features = [

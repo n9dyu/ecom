@@ -9,8 +9,8 @@ const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
             <p>Are you sure you want to logout?</p>
 
             <div className="logout-btn">
-                <button onClick={onClose} className="cancel">Cancel</button>
-                <button onClick={onConfirm} className="save">Logout</button>
+                <button onClick={onClose} className="cancel cursor-pointer">Cancel</button>
+                <button onClick={onConfirm} className="save cursor-pointer">Logout</button>
             </div>
         </div>
     </div>

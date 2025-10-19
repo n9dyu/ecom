@@ -66,7 +66,7 @@
 
 .register-card input,
 .register-card select {
-  @apply w-full border rounded-lg px-3 py-2 mb-6 font-light;
+  @apply w-full border rounded-lg px-3 py-2 mb-6 font-light
 }
 
 .register-card textarea {
@@ -90,7 +90,7 @@
 }
 
 .terms-checkbox {
-  @apply flex items-center text-center space-x-2 cursor-pointer;
+  @apply flex items-center text-center space-x-2
 }
 
 .terms-checkbox input {
@@ -98,11 +98,11 @@
 }
 
 .terms-checkbox span {
-  @apply text-sm;
+  @apply text-sm text-[#241C1C]
 }
 
 .terms-checkbox a {
-  @apply text-blue-600 underline;
+  @apply text-blue-600 underline
 }
 
 .login-card {
@@ -175,11 +175,19 @@
 }
 
 .drawer-bg {
-  @apply fixed right-0 z-20 backdrop-blur-lg w-full p-12 flex flex-col justify-center items-center lg:hidden
+  @apply fixed right-0 top-20 h-full z-50 
+  bg-white
+  w-full pb-10 flex flex-col justify-center items-center lg:hidden;
 }
 
 .cart {
-  @apply py-2 px-3 border rounded-md
+  @apply py-2 px-30 border-[#241C1C]
+}
+
+@media (max-width: 1023px) {
+  .nav-bar {
+    background-color: white;
+  }
 }
 
 
@@ -194,7 +202,7 @@
 }
 
 .hero-text {
-  @apply lg:w-1/2 flex flex-col items-start text-[#241C1C];
+  @apply lg:w-1/2 flex flex-col items-start text-[#241C1C]
 }
 
 .hero-text h1 {
@@ -203,11 +211,11 @@
 }
 
 .hero-text h2 {
-  @apply text-xl sm:text-2xl lg:text-4xl font-bold text-[#A20100] mt-2;
+  @apply text-xl sm:text-2xl lg:text-2xl xl:text-4xl font-bold text-[#A20100] mt-2;
 }
 
 .hero-text p {
-  @apply mt-6 sm:mt-8 text-sm sm:text-lg lg:text-2xl max-w-xl;
+  @apply mt-6 sm:mt-8 text-sm sm:text-lg lg:text-[18px] xl:text-xl max-w-xl;
 }
 
 .hero-btn {
@@ -215,11 +223,11 @@
 }
 
 .hero-right {
-  @apply lg:w-1/2 flex justify-center mt-10 lg:mt-0 relative;
+  @apply lg:w-1/2 flex justify-center mt-10 lg:mt-0 relative
 }
 
 .hero-right img {
-  @apply w-full max-w-md lg:max-w-xl object-contain z-10;
+  @apply w-full max-w-md lg:max-w-xl object-contain z-10
 }
 
 .hero-drip {
@@ -230,62 +238,72 @@
 /* ABOUT SECTION */
 
 .about-section {
-  @apply relative min-h-[900px] bg-[radial-gradient(circle_at_center,_#FFB7B7_0%,_#A20100_40%,_#A20100_100%)] text-white justify-center
+  @apply relative min-h-[700px] sm:min-h-[700px] lg:min-h-[900px] 
+  bg-[#A20100]
+  lg:bg-[radial-gradient(circle_at_center,_#FFB7B7_0%,_#A20100_40%,_#A20100_100%)]
+  text-white flex justify-center items-center flex-col;
 }
 
 .about-tag {
-  @apply text-3xl sm:text-5xl lg:text-6xl mt-10 lg:mt-20 lg:mb-10 text-center align-middle;
+  @apply text-3xl sm:text-5xl lg:text-6xl mt-10 sm:mt-16 lg:mt-20 lg:mb-10 
+  text-center;
   font-family: "BirdsOfParadise";
 }
 
 .about-container {
-  @apply relative flex justify-center items-center 
+  @apply relative flex flex-col lg:flex-row justify-center items-center px-6 lg:px-16 pt-25 gap-10;
 }
 
 .visual {
-  @apply max-h-[600px] lg:max-h-[800px] z-10 align-middle items-center justify-center mt-30
+  @apply max-h-[400px] sm:max-h-[500px] lg:max-h-[800px] z-10 flex items-center justify-center mt-10 lg:mt-0;
 }
 
 .about-container p {
-  @apply text-lg leading-tight
+  @apply text-base sm:text-lg lg:text-xl leading-snug sm:leading-tight max-w-[500px] text-center lg:text-left;
 }
 
 .about-container span {
-  @apply text-7xl
+  @apply text-5xl sm:text-6xl lg:text-7xl;
 }
 
 .features-card {
-  @apply grid grid-cols-2 md:grid-cols-4 gap-8 px-10 text-center bottom-0
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 px-6 sm:px-10 mt-12 lg:mt-1 md:mt-6;
 }
 
 .features {
-  @apply flex flex-col items-center
+  @apply flex flex-col items-center;
 }
 
 .features p {
-  @apply text-[14px] text-neutral-200 max-w-[200px]
+  @apply text-[12px] sm:text-[12px] lg:text-[16px] text-white max-w-[180px] sm:max-w-[200px] mt-3 text-center;
+  font-family: Helvetica, sans-serif;
+}
+
+.comment-card-left,
+.comment-card-right {
+  @apply hidden lg:block absolute;
 }
 
 .comment-card-left {
-  @apply absolute left-20 
+  @apply left-10 xl:left-10 top-2/12 text-start
 }
 
 .comment-card-right {
-  @apply absolute right-20 
+  @apply right-10 xl:right-10 top-1/16;
 }
 
 .comment-card {
-  @apply max-w-xs bg-white text-[#241C1C] p-6 rounded-md shadow-md text-end
+  @apply max-w-xs bg-white text-[#241C1C] p-4 sm:p-6 rounded-xl shadow-md text-end;
 }
 
 .stars img {
-  @apply mt-5 
+  @apply mt-4 sm:mt-5;
 }
 
 /* MAIN SECTION */
 
 .discover-section { 
-  @apply min-h-auto pb-20 bg-white relative overflow-hidden 
+  @apply min-h-auto pb-10 bg-white relative overflow-hidden 
 }
 
 .discover-section img { 
@@ -301,11 +319,12 @@
 }
 
 .flavor-list h2 { 
-  @apply text-[#A20100] text-7xl mb-4; font-family: BirdsofParadise, serif; 
+  @apply text-[#A20100] text-7xl mb-4; 
+  font-family: BirdsofParadise, serif; 
 }
 
 .flavor-list button { 
-  @apply text-start 
+  @apply text-start text-xl md:text-2xl
 }
 
 .flavor { 
@@ -317,7 +336,7 @@
 }
 
 .details-container { 
-  @apply flex flex-col gap-6 items-center 
+  @apply flex flex-col gap-1 items-center 
 }
 
 .details-container h2 { 
@@ -326,7 +345,7 @@
 }
 
 .details-container p { 
-  @apply text-[#241C1C] leading-tight text-2xl text-end my-10 ml-10 
+  @apply text-[#241C1C] leading-tight text-[18px] md:text-2xl lg:text-xl xl:text-2xl text-end my-10 ml-10 
 }
 
 .tag-card { 
@@ -334,15 +353,22 @@
 }
 
 .tag-content { 
-  @apply absolute inset-0 flex flex-col items-center justify-center px-4 text-sm 
+  @apply absolute inset-0 flex flex-row gap-10 text-center text-xl md:text-2xl lg:text-sm lg:gap-0 lg:flex-col items-center justify-center px-4 
 }
 
 .tag-content span { 
   @apply text-[#A20100] 
 }
 
-@media (max-width: 640px) {
+@media (max-width: 1023px) {
   .details-container h2 {
+    display: none;
+  }
+  .details-container p {
+    text-align: center;
+    margin-left: 0;
+  }
+  .tag-card img{
     display: none;
   }
 }
@@ -351,36 +377,40 @@
 /* ORIGIN SECTION */
 
 .origin-section {
-  @apply relative bg-[linear-gradient(to_bottom,_#FFFFFF_0%,_#FFFFFF_90%,_#A20100_100%)] overflow-hidden;
+  @apply relative overflow-hidden 
+  bg-[#FFFFFF] 
+  lg:bg-[linear-gradient(to_bottom,_#FFFFFF_0%,_#FFFFFF_90%,_#A20100_100%)];
 }
 
 .origin-section img {
-  @apply w-full object-cover -bottom-40 
+  @apply w-full object-cover -bottom-40
 }
 
 .origin-container {
-  @apply max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 py-12 px-6 sm:px-10 lg:px-16 xl:px-24 items-center;
+  @apply max-w-7xl mx-auto 
+  grid grid-cols-1 lg:grid-cols-2 gap-8 
+  py-5 sm:py-12 lg:py-16 
+  px-6 sm:px-10 lg:pr-16 lg:pl-20 lg:pb-0 xl:px-24 
+  items-center;
 }
 
 .origin-info {
-  @apply flex flex-col gap-4 text-lg sm:text-xl lg:text-2xl;
+  @apply flex flex-col gap-3 sm:gap-4 text-base sm:text-lg md:text-2xl lg:text-2xl text-center lg:text-left;
 }
 
 .origin-info h2 {
-  @apply text-[#A20100] text-6xl sm:text-6xl md:text-6xl lg:text-6xl xl:text-7xl mb-4;
+  @apply text-[#A20100] text-6xl sm:text-5xl md:text-7xl xl:text-7xl mb-4;
   font-family: BirdsofParadise, serif;
 }
 
-.origin-info button {
-  @apply text-start
-}
-
 .milk {
-  @apply flex justify-center relative
+  @apply flex justify-center relative mt-8 lg:mt-0;
 }
 
 .milk-photo {
-  @apply absolute -bottom-8 bg-white shadow-md w-100 h-auto flex items-center justify-center z-10
+  @apply absolute -bottom-6 sm:-bottom-8 bg-white shadow-md 
+  w-4/5 sm:w-3/5 md:w-1/2 lg:w-3/4 xl:w-[70%] 
+  h-auto flex items-center justify-center z-10;
 }
 
 @media (min-width: 1024px) {
@@ -389,7 +419,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 1024px) {
   .milk {
     display: none;
   }
@@ -427,7 +457,7 @@
 }
 
 .send-us-btn {
-  @apply inline-block bg-[#A20100] text-xl text-white px-15 py-5 rounded-lg hover:bg-red-700 transition
+  @apply inline-block bg-[#A20100] text-xl text-white px-5 py-5 xl:py-8 xl:px-8 rounded-lg hover:bg-red-700 transition
 }
 
 .question-container {
@@ -436,6 +466,10 @@
 
 .question-card {
   @apply bg-white text-[#241C1C] rounded-lg shadow-md cursor-pointer py-4
+}
+
+.question-card h3 {
+  @apply text-xl lg:text-2xl
 }
 
 .question-card-answer {
@@ -508,7 +542,7 @@
 }
 
 .quantity {
-  @apply flex items-center gap-3 text-xl
+  @apply flex items-center gap-3 text-xl 
 }
 
 .price {
@@ -523,7 +557,7 @@
 }
 
 .profile-card {
-  @apply bg-white w-full max-w-md p-6 rounded-2xl shadow-lg relative
+  @apply bg-white w-full max-w-md p-6 rounded-2xl shadow-lg relative 
 }
 
 .profile-card h2 {

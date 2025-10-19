@@ -135,7 +135,7 @@ function Register() {
                             required
                             minLength={8} 
                         />
-                        <button type="button" className="reg-password" onClick={() => setShowPassword(!showPassword)}>
+                        <button type="button" className="reg-password cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
                             {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                         </button>
                     </div>
@@ -150,7 +150,7 @@ function Register() {
                             required
                             minLength={8}
                         />
-                        <button type="button" className="reg-password" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                        <button type="button" className="reg-password cursor-pointer" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
                             {showConfirmPassword ? (<EyeOff size={18} />) : (<Eye size={18} />)}
                         </button>
                     </div>
@@ -179,7 +179,7 @@ function Register() {
 
                     <div className="flex flex-col">
                         <label>Payment Method</label>
-                        <select name="paymentMethod" value={formData.paymentMethod} onChange={handleChange} >
+                        <select className="cursor-pointer" name="paymentMethod" value={formData.paymentMethod} onChange={handleChange} >
                             <option value="Cash on Delivery">Cash on Delivery</option>
                             <option value="GCash">GCash</option>
                             <option value="Credit/Debit Card">Credit/Debit Card</option>
@@ -220,7 +220,7 @@ function Register() {
                 )}
 
                 <button type="submit" 
-                className={`register-btn ${!termsAccepted ? "opacity-50 cursor-not-allowed" : ""}`}
+                className={`register-btn ${!termsAccepted ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
                 disabled={!termsAccepted}>
                     Register
                 </button>

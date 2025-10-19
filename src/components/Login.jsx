@@ -32,7 +32,7 @@ function Login() {
       storedUser.email === trimmedEmail &&
       storedUser.password === trimmedPassword
     ) {
-      navigate("/home");
+      navigate("/");
     } else {
       setErrorMessage("Invalid email or password.");
     }
@@ -63,7 +63,7 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button type="button" className="reg-password" onClick={() => setShowPassword(!showPassword)} >
+          <button type="button" className="reg-password cursor-pointer" onClick={() => setShowPassword(!showPassword)} >
             {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
           </button>
         </div>
@@ -74,13 +74,13 @@ function Login() {
           </p>
         )}
 
-        <button type="submit" className="login-btn">
+        <button type="submit" className="login-btn cursor-pointer">
           Login
         </button>
 
         <p className="create-acc">
           New here?{" "}
-          <span onClick={() => navigate("/register")}>Create an account</span>
+          <span className="cursor-pointer" onClick={() => navigate("/register")}>Create an account</span>
         </p>
       </form>
     </div>

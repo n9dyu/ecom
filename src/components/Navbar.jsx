@@ -57,7 +57,7 @@ function Navbar({ onCartToggle, onProfileToggle, onLogoutToggle}) {
                     </div>
 
                     <div className="lg:hidden md:flex flex-col justify-end">
-                        <button onClick={toggleNavbar}>
+                        <button className="text-[#A20100]" onClick={toggleNavbar}>
                             {mobileDrawerOpen ? <X /> : <Menu />}
                         </button>
                     </div>
@@ -66,18 +66,10 @@ function Navbar({ onCartToggle, onProfileToggle, onLogoutToggle}) {
 
                 {mobileDrawerOpen && (
                     <div className="drawer-bg">
-                        <ul className="">
-                            {navItems.map((item, index) => (
-                                <li key={index}>
-                                    <button onClick={() => handleScroll(item.href)}>{item.label}</button>
-                                </li>
-                            ))}
-                        </ul>
-
-                        <div className="flex-space-x-6">
+                        <div className="flex flex-col">
                             <button onClick={onCartToggle} className="cart">Cart</button>
                             <button onClick={onProfileToggle} className="cart">Profile</button>
-                            <button onClick={onLogoutToggle}>Logout</button>
+                            <button onClick={onLogoutToggle} className="cart">Logout</button>
                         </div>
                     </div>
                 )}

@@ -34,7 +34,7 @@ export default function FAQPage() {
                             <div key={index} className="question-card" onClick={() => toggleFAQ(index)}>
 
                                 <div className="flex justify-between items-center p-4">
-                                    <h3 className="text-2xl">{faq.question}</h3>
+                                    <h3>{faq.question}</h3>
                                     <ChevronDown className={`chevron ${openIndex === index ? "rotate-180" : ""}`}/>
                                 </div>
                                 {openIndex === index && (
