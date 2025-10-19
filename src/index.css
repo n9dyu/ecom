@@ -482,8 +482,8 @@
   @apply space-y-4 text-[#241C1C]
 }
 
-.profile-input input {
-  @apply w-full border rounded px-2 py-1 mt-1 
+.profile-input input, select {
+  @apply w-full border rounded-lg px-3 py-2 mb-6 font-light
 }
 
 .profile-input label {
@@ -546,4 +546,31 @@ footer {
 
 .copyright {
   @apply mt-8 border-t border-[#241C1C] pt-4 text-center text-sm text-[#241C1C]
+}
+
+
+/* LOGOUT POPUP */
+
+.logout-screen {
+  @apply fixed inset-0 bg-black/20 flex justify-center items-center z-50 backdrop-blur-sm
+}
+
+.logout-card {
+  @apply bg-white w-full max-w-sm p-6 rounded-2xl shadow-lg relative
+}
+
+.logout-card h2 {
+  @apply text-xl font-bold mb-4
+}
+
+.logout-card p {
+  @apply mb-6
+}
+
+.logout-btn {
+  @apply flex justify-end gap-4
+}
+
+.logout-close {
+  
 }

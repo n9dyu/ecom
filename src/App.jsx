@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import Login from './components/Login.jsx'
@@ -7,6 +7,7 @@ import Register from './components/Register.jsx';
 import Navbar from './components/Navbar.jsx'
 import CartModal from './components/CartModal.jsx'
 import ProfileModal from "./components/ProfileModal.jsx";
+import LogoutModal from './components/LogoutModal.jsx';
 
 import HeroSection from './components/HeroSection.jsx'
 import About from './components/About.jsx'
@@ -16,9 +17,11 @@ import FAQ from './components/FAQ.jsx'
 import Footer from './components/Footer.jsx'
 
 function Home() {
+  const navigate = useNavigate();
+
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
-
+  const [isLogoutOpen, setLogoutOpen] = useState(false); 
   const [isProfileOpen, setProfileOpen] = useState(false);
 
   const handleAddToCart = (flavor) => {
@@ -59,7 +62,7 @@ function Home() {
   };
 
   const handleClearCart = () => {
-    setCartItems([]); // clear all items
+    setCartItems([]); 
   };
 
   return (
@@ -67,6 +70,7 @@ function Home() {
       <Navbar 
         onCartToggle={() => setCartOpen(!cartOpen)}
         onProfileToggle={() => setProfileOpen(!isProfileOpen)}
+        onLogoutToggle={() => setLogoutOpen(true)}
       />
 
       <div className="mx-auto pt-10">
@@ -92,6 +96,16 @@ function Home() {
       <ProfileModal
         isOpen={isProfileOpen}
         onClose={() => setProfileOpen(false)}
+      />
+
+      <LogoutModal
+        isOpen={isLogoutOpen}
+        onClose={() => setLogoutOpen(false)}
+        onConfirm={() => {
+          localStorage.removeItem("userData"); 
+          setLogoutOpen(false);
+          navigate("/login"); 
+        }}
       />
     </>
   );

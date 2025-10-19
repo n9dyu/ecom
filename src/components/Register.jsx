@@ -11,7 +11,7 @@ function Register() {
         password: "",
         address: "",
         phone: "+63",
-        paymentMethod: "GCash",
+        paymentMethod: "Cash on Delivery",
         paymentDetails: "",
     });
 
@@ -39,16 +39,10 @@ function Register() {
             return;
         }
 
-        if (name === "paymentDetails") {
-            if (
-                formData.paymentMethod === "GCash" ||
-                formData.paymentMethod === "Credit/Debit Card" ||
-                formData.paymentMethod === "Bank Transfer"
-            ) {
-                const numericValue = value.replace(/[^\d\s-]/g, "");
-                setFormData((prev) => ({ ...prev, paymentDetails: numericValue }));
-                return;
-            }
+        if (name === "paymentDetails" && formData.paymentMethod !== "Cash on Delivery") {
+            const numericValue = value.replace(/[^\d\s-]/g, "");
+            setFormData((prev) => ({ ...prev, paymentDetails: numericValue }));
+            return;
         }
 
         setFormData((prev) => ({ ...prev, [name]: value }));
@@ -61,6 +55,12 @@ function Register() {
             setErrorMessage("Passwords do not match.");
             return;
         }
+
+        if (formData.paymentMethod !== "Cash on Delivery" && !formData.paymentDetails) {
+            setErrorMessage("Payment details are required for this payment method.");
+            return;
+        }
+        
         setErrorMessage("");
 
         localStorage.setItem("userData", JSON.stringify({
@@ -75,6 +75,7 @@ function Register() {
     };
 
     const getPaymentPlaceholder = () => {
+        if (formData.paymentMethod === "Cash on Delivery") return "Not required";
         switch (formData.paymentMethod) {
             case "GCash":
                 return "Enter your GCash number (e.g. 09XXXXXXXXX)";
@@ -161,31 +162,21 @@ function Register() {
                 />
 
                 <label>Payment Method</label>
-                <select
-                name="paymentMethod"
-                value={formData.paymentMethod}
-                onChange={handleChange}
-                >
-                <option value="GCash">GCash</option>
-                <option value="Credit/Debit Card">Credit/Debit Card</option>
-                <option value="Bank Transfer">Bank Transfer</option>
+                <select name="paymentMethod" value={formData.paymentMethod} onChange={handleChange} >
+                    <option value="Cash on Delivery">Cash on Delivery</option>
+                    <option value="GCash">GCash</option>
+                    <option value="Credit/Debit Card">Credit/Debit Card</option>
+                    <option value="Bank Transfer">Bank Transfer</option>
                 </select>
 
-                <label>
-                    {formData.paymentMethod === "GCash"
-                        ? "GCash Number"
-                        : formData.paymentMethod === "Credit/Debit Card"
-                        ? "Card Number"
-                        : "Bank Account Number"
-                    }
-                </label>
+                <label>Payment Details</label>
                 <input
                     type="text"
                     name="paymentDetails"
                     value={formData.paymentDetails}
                     onChange={handleChange}
-                    placeholder={getPaymentPlaceholder()}
-                    required
+                    disabled={formData.paymentMethod === "Cash on Delivery"}
+                    className={formData.paymentMethod === "Cash on Delivery" ? "bg-gray-200 cursor-not-allowed" : ""}
                 />
 
                 {errorMessage && (

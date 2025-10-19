@@ -1,14 +1,11 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { Menu, X, ShoppingBag,  UserStar} from "lucide-react"
+import { Menu, X, ShoppingBag,  UserStar, LogOut} from "lucide-react"
 import icon from "../assets/icon.png"
 import { navItems } from "../constants"
 
-import CartModal from "./CartModal"
-import ProfileModal from "./ProfileModal"
-
 import { useState } from "react"
 
-function Navbar({ onCartToggle, onProfileToggle }) {
+function Navbar({ onCartToggle, onProfileToggle, onLogoutToggle}) {
     const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
@@ -48,11 +45,14 @@ function Navbar({ onCartToggle, onProfileToggle }) {
                     </ul>
 
                     <div className="nav-cart">
-                        <button onClick={onCartToggle} className="size-5 text-[#A20100]">
+                        <button onClick={onCartToggle} className="size-5 text-[#A20100] cursor-pointer">
                             <ShoppingBag />
                         </button>
-                        <button onClick={onProfileToggle} className="size-5 text-[#A20100]">
+                        <button onClick={onProfileToggle} className="size-5 text-[#A20100] cursor-pointer">
                             <UserStar />
+                        </button>
+                        <button onClick={onLogoutToggle} className="size-5 text-[#A20100] cursor-pointer">
+                            <LogOut />
                         </button>
                     </div>
 
@@ -76,9 +76,8 @@ function Navbar({ onCartToggle, onProfileToggle }) {
 
                         <div className="flex-space-x-6">
                             <button onClick={onCartToggle} className="cart">Cart</button>
-                            <button onClick={onProfileToggle} className="cart">
-                            Profile
-                        </button>
+                            <button onClick={onProfileToggle} className="cart">Profile</button>
+                            <button onClick={onLogoutToggle}>Logout</button>
                         </div>
                     </div>
                 )}
