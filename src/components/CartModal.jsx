@@ -92,7 +92,7 @@ const CartModal = ({ isOpen, onClose, cartItems = [], onQuantityChange, onRemove
 
                                     <p className="price">₱{Number(item.price || 0) * item.quantity}</p>
 
-                                    <button className="close-btn" onClick={() => onRemoveItem(item.name)}>
+                                    <button className="text-[#A20100]" onClick={() => onRemoveItem(item.name)}>
                                         Delete
                                     </button>
                                 </div>

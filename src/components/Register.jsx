@@ -100,103 +100,118 @@ function Register() {
             <form onSubmit = { handleSubmit }>
                 <h1>Register Account</h1>
 
-                <label>Full Name</label>
-                <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    minLength={4}
-                />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                    <div className="flex flex-col">
+                        <label>Full Name</label>
+                        <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                            minLength={4}
+                        />
+                    </div>
 
-                <label>Email</label>
-                <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    minLength={8}
-                />
+                    <div className="flex flex-col">
+                        <label>Email</label>
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                            minLength={8}
+                        />
+                    </div>
 
-                <label>Password</label>
-                <div className="relative">
-                    <input
-                        type={showPassword ? "text" : "password"}
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                        minLength={8} 
-                    />
-                    <button type="button" className="reg-password" onClick={() => setShowPassword(!showPassword)}>
-                        {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                    </button>
+                    <div className="flex flex-col relative">    
+                        <label>Password</label>
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            required
+                            minLength={8} 
+                        />
+                        <button type="button" className="reg-password" onClick={() => setShowPassword(!showPassword)}>
+                            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                        </button>
+                    </div>
+
+                    <div className="flex flex-col relative">  
+                        <label>Confirm Password</label>
+                        <input
+                            type={showConfirmPassword ? "text" : "password"}
+                            name="confirmPassword"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            required
+                            minLength={8}
+                        />
+                        <button type="button" className="reg-password" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                            {showConfirmPassword ? (<EyeOff size={18} />) : (<Eye size={18} />)}
+                        </button>
+                    </div>
+                    
+                    <div className="flex flex-col md:col-span-1">
+                        <label>Address</label>
+                        <textarea
+                            name="address"
+                            value={formData.address}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    
+                    <div className="flex flex-col">
+                        <label>Phone Number</label>
+                        <input
+                            type="text"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            required
+                            pattern="\+63[0-9]{10,}$"
+                        />
+                    </div>
+
+                    <div className="flex flex-col">
+                        <label>Payment Method</label>
+                        <select name="paymentMethod" value={formData.paymentMethod} onChange={handleChange} >
+                            <option value="Cash on Delivery">Cash on Delivery</option>
+                            <option value="GCash">GCash</option>
+                            <option value="Credit/Debit Card">Credit/Debit Card</option>
+                            <option value="Bank Transfer">Bank Transfer</option>
+                        </select>
+                    </div>
+
+                    <div className="flex flex-col">
+                        <label>Payment Details</label>
+                        <input
+                            type="text"
+                            name="paymentDetails"
+                            value={formData.paymentDetails}
+                            onChange={handleChange}
+                            disabled={formData.paymentMethod === "Cash on Delivery"}
+                            className={formData.paymentMethod === "Cash on Delivery" ? "bg-gray-200 cursor-not-allowed" : ""}
+                        />
+                    </div>
                 </div>
 
-                <label>Confirm Password</label>
-                <div className="relative">
-                    <input
-                        type={showConfirmPassword ? "text" : "password"}
-                        name="confirmPassword"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        required
-                        minLength={8}
-                    />
-                    <button type="button" className="reg-password" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
-                        {showConfirmPassword ? (<EyeOff size={18} />) : (<Eye size={18} />)}
-                    </button>
-                </div>
-
-                <label>Address</label>
-                <textarea
-                    name="address"
-                    value={formData.address}
-                    onChange={handleChange}
-                    required
-                />
-
-                <label>Phone Number</label>
-                <input
-                    type="text"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    required
-                    pattern="\+63[0-9]{10,}$"
-                />
-
-                <label>Payment Method</label>
-                <select name="paymentMethod" value={formData.paymentMethod} onChange={handleChange} >
-                    <option value="Cash on Delivery">Cash on Delivery</option>
-                    <option value="GCash">GCash</option>
-                    <option value="Credit/Debit Card">Credit/Debit Card</option>
-                    <option value="Bank Transfer">Bank Transfer</option>
-                </select>
-
-                <label>Payment Details</label>
-                <input
-                    type="text"
-                    name="paymentDetails"
-                    value={formData.paymentDetails}
-                    onChange={handleChange}
-                    disabled={formData.paymentMethod === "Cash on Delivery"}
-                    className={formData.paymentMethod === "Cash on Delivery" ? "bg-gray-200 cursor-not-allowed" : ""}
-                />
-
-                <label className="terms-checkbox">
-                    <input
-                        type="checkbox"
-                        checked={termsAccepted}
-                        onChange={() => setTermsAccepted(!termsAccepted)}
-                        required
-                    />
-                    <span>
-                        I agree to the{" "} <a href="/terms"> Terms and Conditions </a>
-                    </span>
-                </label>
+                    <label className="terms-checkbox">
+                        <input
+                            type="checkbox"
+                            checked={termsAccepted}
+                            onChange={() => setTermsAccepted(!termsAccepted)}
+                            required
+                        />
+                        <span>
+                            I agree to the{" "} <a href="/terms"> Terms and Conditions </a>
+                        </span>
+                    </label>
+                
 
                 {errorMessage && (
                     <p className="error-text">

@@ -1,4 +1,3 @@
-import React from 'react'
 import v1 from "../assets/v1.png"
 import cup from "../assets/cup.png"
 
