@@ -1,20 +1,36 @@
-import { Menu, X, ShoppingBag } from "lucide-react"
+import { useNavigate, useLocation } from "react-router-dom";
+import { Menu, X, ShoppingBag,  UserStar} from "lucide-react"
 import icon from "../assets/icon.png"
 import { navItems } from "../constants"
 
 import CartModal from "./CartModal"
+import ProfileModal from "./ProfileModal"
 
 import { useState } from "react"
 
-function Navbar({ onCartToggle }) {
+function Navbar({ onCartToggle, onProfileToggle }) {
     const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
-    const [cartOpen, setCartOpen] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const toggleNavbar = () => {
         setMobileDrawerOpen(!mobileDrawerOpen);
-    }
+    };
+
+    const handleScroll = (id) => {
+        if (location.pathname === "/home") {
+        const section = document.querySelector(id);
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+        }
+        } else {
+        navigate(`/home${id}`);
+        }
+        setMobileDrawerOpen(false);
+    };
 
     return (
+        <>
         <nav className="nav-bar">
             <div className="nav-container">
                 <div className="flex justify-between items-center">
@@ -26,7 +42,7 @@ function Navbar({ onCartToggle }) {
                     <ul className="hidden lg:flex ml-14 space-x-12 list-none">
                         {navItems.map ((item, index) => (
                             <li key={index}>
-                                <a href={ item.href } className="nav-list">{ item.label }</a>
+                                <button onClick={() => handleScroll(item.href)}className="nav-list">{ item.label }</button>
                             </li>
                         ))}
                     </ul>
@@ -34,6 +50,9 @@ function Navbar({ onCartToggle }) {
                     <div className="nav-cart">
                         <button onClick={onCartToggle} className="size-5 text-[#A20100]">
                             <ShoppingBag />
+                        </button>
+                        <button onClick={onProfileToggle} className="size-5 text-[#A20100]">
+                            <UserStar />
                         </button>
                     </div>
 
@@ -50,19 +69,23 @@ function Navbar({ onCartToggle }) {
                         <ul className="">
                             {navItems.map((item, index) => (
                                 <li key={index}>
-                                    <a href={item.href}>{item.label}</a>
+                                    <button onClick={() => handleScroll(item.href)}>{item.label}</button>
                                 </li>
                             ))}
                         </ul>
 
-                        <div className="felx-space-x-6">
+                        <div className="flex-space-x-6">
                             <button onClick={onCartToggle} className="cart">Cart</button>
+                            <button onClick={onProfileToggle} className="cart">
+                            Profile
+                        </button>
                         </div>
                     </div>
                 )}
 
             </div>
         </nav>
+        </>
     );
 }
 

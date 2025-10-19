@@ -1,80 +1,129 @@
-// src/components/CartModal.jsx
-import React from "react";
 import { X } from "lucide-react";
+import React, { useState, useEffect } from "react";
 
-const CartModal = ({ isOpen, onClose }) => {
-  if (!isOpen) return null;
+const CartModal = ({ isOpen, onClose, cartItems = [], onQuantityChange, onRemoveItem, onClearCart }) => {
+    const [userData, setUserData] = useState(null);
+    const [orderSuccess, setOrderSuccess] = useState(false);
 
-  return (
-    <div className="cart-screen" onClick={onClose}>
+    const subtotal = cartItems.reduce(
+        (acc, item) => acc + Number(item.price || 0) * item.quantity, 0
+    );
+    const shippingFee = 40;
+    const total = subtotal + shippingFee;
 
-        <div className="cart-container" onClick={(e) => e.stopPropagation()}>
-            
-            <button className="close-btn" onClick={onClose}>
-                <X size={24} />
-            </button>
+    useEffect(() => {
+        const stored = localStorage.getItem("userData");
+        if (stored) {
+            setUserData(JSON.parse(stored));
+        }
+    }, []);
 
-            <h1 className="checkout-title">Checkout</h1>
+    if (!isOpen) return null;
 
-            <div className="checkout-content">
+    const handleCheckout = () => {
+        setOrderSuccess(true);
 
-                <div>
-                    <h2>SHIPPING DETAILS</h2>
-                    <p className="shipping-details">
-                        Dr. Faustino Donnelly <br />
-                        63759 Isaiah Well, Erdmanstad, Massachusetts, 83533
-                        <br />
-                        315-835-0271
+        if (onClearCart) {
+            onClearCart();
+        }
+
+        setTimeout(() => {
+            setOrderSuccess(false);
+            onClose();
+        }, 3000);
+    };
+
+    return (
+        <div className="cart-screen" onClick={onClose}>
+            <div className="cart-container" onClick={(e) => e.stopPropagation()}>     
+
+                <button className="close-btn" onClick={onClose}>
+                    <X size={24} />
+                </button>
+
+                {orderSuccess && (
+                    <p className="success">
+                        ✅ Order placed successfully! Thank you for your purchase.
                     </p>
+                )}
 
-                    <h2>PAYMENT METHOD</h2>
-                    <ul className="space-y-3 text-sm">
-                        <li className="text-[#A20100] font-semibold">GCASH 09********71</li>
-                        <li>Credit/Debit Card</li>
-                        <li>Bank Transfer</li>
-                    </ul>
-                </div>
+                <h1 className="checkout-title">Checkout</h1>
 
-                <div className="flex flex-col">
-                    <div className="flex items-center mb-6">
-                        <img
-                            src="/path-to-your-icecream-image.png"
-                            alt="Berry Shortcake"
-                            className="w-24 h-24 rounded-full object-cover mr-6"
-                        />
-                        <div>
-                            <h3 className="text-[#A20100] font-bold text-lg mb-2">
-                            BERRY SHORTCAKE DREAM
-                            </h3>
-                            <div className="flex items-center gap-3 text-xl">
-                            <button className=" px-3 py-1">-</button>
-                            <span>2</span>
-                            <button className="px-3 py-1">+</button>
+                <div className="checkout-content">
+
+                    <div>
+                        <h2>SHIPPING DETAILS</h2>
+                        {userData ? (
+                        <p className="shipping-details">
+                            {userData.name} <br />
+                            {userData.address} <br />
+                            {userData.phone}
+                        </p>
+                        ) : (
+                        <p className="default">No user data found.</p>
+                        )}
+
+                        <h2>PAYMENT METHOD</h2>
+                        {userData ? (
+                        <ul className="space-y-2 text-sm">
+                            <li className="payment-list">
+                                {userData.paymentMethod} — {userData.paymentDetails}
+                            </li>
+                        </ul>
+                        ) : (
+                        <p className="default">No payment info available.</p>
+                        )}
+                    </div>
+
+                    <div className="cart-order">
+                        {cartItems.map((item, index) => (
+                            <div key={index} className="order-card">
+                                <img
+                                src={item.image}
+                                alt={item.name}
+                                className="w-24 h-24 rounded-full object-cover mr-6"
+                                />
+                                <div>
+                                    <h3>{item.name}</h3>
+
+                                    <div className="quantity">
+                                        <button onClick={() => onQuantityChange(item.name, "decrease")}>-</button>
+                                        <span>{item.quantity}</span>
+                                        <button onClick={() => onQuantityChange(item.name, "increase")}>+</button>
+                                    </div>
+
+                                    <p className="price">₱{Number(item.price || 0) * item.quantity}</p>
+
+                                    <button
+                                    className="delete-btn text-red-500 font-bold"
+                                    onClick={() => onRemoveItem(item.name)}
+                                >
+                                    Delete
+                                </button>
+                                </div>
                             </div>
-                            <p className="mt-2 text-sm font-semibold">₱240</p>
+                        ))}
+
+                        <div className="border-t border-gray-300 my-4"></div>
+
+                        <div className="flex justify-between text-xs mb-2">
+                            <span className="uppercase">Shipping Fee</span>
+                            <span>₱{shippingFee}</span>
                         </div>
+
+                        <div className="flex justify-between font-bold text-lg mb-6">
+                            <span>Total</span>
+                            <span>₱{total}</span>
+                        </div>
+
+                        <button className="checkout-btn" onClick={handleCheckout}>
+                            CHECK OUT
+                        </button>
                     </div>
-
-                    <div className="border-t border-gray-300 my-4"></div>
-
-                    <div className="flex justify-between text-xs mb-2">
-                        <span className="uppercase">Shipping Fee</span>
-                        <span>₱40</span>
-                    </div>
-
-                    <div className="flex justify-between font-bold text-lg mb-6">
-                        <span>Total</span>
-                        <span>₱520</span>
-                    </div>
-
-                    <button className="checkout-btn">
-                        CHECK OUT
-                    </button>
                 </div>
             </div>
         </div>
-    </div>
-  );
+    );
 };
 
 export default CartModal;

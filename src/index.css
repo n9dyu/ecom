@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap');
 
 @font-face {
   font-family: "Coolvetica";
@@ -22,6 +23,12 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap');
+}
 
 :root {
   font-family: "Coolvetica", sans-serif;
@@ -144,50 +151,66 @@
 /* HERO SECTION */
 
 .hero-section {
-  @apply min-h-screen
+  @apply relative bg-white overflow-hidden;
 }
 
-.hero-container {
-  @apply relative w-screen flex flex-col items-start mt-6 lg:mt-20 text-[#241C1C]
+.hero-content {
+  @apply flex flex-col lg:flex-row items-center justify-between px-10 lg:px-20 pb-40 relative z-20;
 }
 
-.hero-container h1 {
-  @apply text-2xl sm:text-4xl lg:text-5xl tracking-wide z-20 relative
+/* Left side (text) */
+.hero-text {
+  @apply lg:w-1/2 flex flex-col items-start text-[#241C1C];
 }
 
-.hero-container p {
-  @apply mt-6 sm:mt-10 text-sm sm:text-lg lg:text-xl max-w-3xl z-20 relative
+.hero-text h1 {
+  @apply font-[Italianno] text-6xl sm:text-7xl lg:text-8xl text-[#A20100];
+}
+
+.hero-text h2 {
+  @apply text-xl sm:text-2xl lg:text-3xl font-bold text-[#A20100] mt-2;
+}
+
+.hero-text p {
+  @apply mt-6 sm:mt-8 text-sm sm:text-lg lg:text-xl max-w-xl;
 }
 
 .hero-btn {
-  @apply mt-10 bg-[#A20100] text-white italic px-6 py-2 rounded-full shadow-[0px_4px_0px_0px_rgba(0,0,0,0.3)] hover:bg-pink-400 transition
+  @apply mt-8 bg-[#A20100] text-white italic px-8 py-3 rounded-full shadow-[0px_4px_0px_rgba(0,0,0,0.3)] hover:bg-pink-400 transition;
 }
 
-.hero-image {
-  @apply absolute bottom-0 left-0 w-full z-10
+/* Right side (image) */
+.hero-right {
+  @apply lg:w-1/2 flex justify-center mt-10 lg:mt-0 relative;
 }
 
-.hero-image img {
-  @apply absolute inset-x-0 bottom-20 w-screen h-auto z-10 pointer-events-none
+.hero-right img {
+  @apply w-full max-w-md lg:max-w-xl object-contain z-10;
+}
+
+/* Background drip */
+.hero-drip {
+  @apply absolute bottom-0 left-0 w-full h-auto z-0;
 }
 
 
 /* ABOUT SECTION */
 
 .about-section {
-  @apply relative mt-20 min-h-[900px] bg-[radial-gradient(circle_at_center,_#FFB7B7_0%,_#A20100_40%,_#A20100_100%)] text-white
+  @apply relative min-h-[900px] bg-[radial-gradient(circle_at_center,_#FFB7B7_0%,_#A20100_40%,_#A20100_100%)] text-white justify-center
 }
 
-.about-section h2 {
-  @apply text-3xl sm:text-5xl lg:text-6xl mt-10 lg:mt-20 italic font-serif
+.about-tag {
+  @apply text-3xl sm:text-5xl lg:text-6xl mt-10 lg:mt-20 lg:mb-10 text-center align-middle;
+  font-family: "BirdsOfParadise";
 }
 
 .about-container {
-  @apply relative flex justify-center items-center mt-16
+  @apply relative flex justify-center items-center 
 }
 
-.about-container img {
-  @apply max-h-[400px] lg:max-h-[500px] z-10
+.visual {
+  @apply max-h-[600px] lg:max-h-[800px] z-10 align-middle items-center justify-center mt-30
 }
 
 .about-container p {
@@ -211,13 +234,20 @@
 }
 
 .comment-card-left {
-  @apply absolute left-10 max-w-xs bg-white text-[#241C1C] p-6 rounded-md shadow-md
+  @apply absolute left-20 
 }
 
 .comment-card-right {
-  @apply absolute right-10 max-w-xs bg-white text-[#241C1C] p-6 rounded-md shadow-md text-end
+  @apply absolute right-20 
 }
 
+.comment-card {
+  @apply max-w-xs bg-white text-[#241C1C] p-6 rounded-md shadow-md text-end
+}
+
+.stars img {
+  @apply mt-5 
+}
 
 /* MAIN SECTION */
 
@@ -283,11 +313,11 @@
 /* ORIGIN SECTION */
 
 .origin-section {
-  @apply min-h-screen bg-white relative overflow-hidden
+  @apply min-h-auto bg-white relative overflow-hidden
 }
 
 .origin-section img {
-  @apply w-full object-cover bottom-0
+  @apply w-full object-cover -bottom-40
 }
 
 .origin-container {
@@ -398,4 +428,122 @@
 
 .checkout-btn {
   @apply bg-[#A20100] text-white py-3 rounded-full text-lg hover:bg-[#8b0100] transition-all
+}
+
+.success {
+  @apply text-green-600 mb-4
+}
+
+.default {
+  @apply text-gray-500 text-sm
+}
+
+.payment-list{
+  @apply text-[#A20100] font-semibold
+}
+
+.cart-order {
+  @apply flex flex-col
+}
+
+.order-card {
+  @apply flex items-center mb-6
+}
+
+.order-card h3 {
+  @apply text-[#A20100] font-bold text-lg mb-2
+}
+
+.quantity {
+  @apply flex items-center gap-3 text-xl
+}
+
+.price {
+  @apply mt-2 text-sm font-semibold
+}
+
+
+/* PROFILE POPUP */
+
+.profile-screen {
+  @apply fixed inset-0 bg-black/20 flex justify-center items-center z-50 backdrop-blur-sm
+}
+
+.profile-card {
+  @apply bg-white w-full max-w-md p-6 rounded-2xl shadow-lg relative
+}
+
+.profile-card h2 {
+  @apply text-7xl mb-10 text-[#A20100];
+  font-family: BirdsofParadise, serif;
+}
+
+.profile-input {
+  @apply space-y-4 text-[#241C1C]
+}
+
+.profile-input input {
+  @apply w-full border rounded px-2 py-1 mt-1 
+}
+
+.profile-input label {
+  @apply font-semibold
+}
+
+.profile-btn {
+  @apply mt-6 flex justify-end space-x-3
+}
+
+.cancel {
+  @apply bg-gray-300 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-400
+}
+
+.save {
+  @apply bg-[#A20100] text-white px-4 py-2 rounded-lg hover:bg-[#8b0100]
+}
+
+/* FOOTER */
+
+footer {
+  @apply bg-[#FFB7B7] text-[#241C1C]
+}
+
+.footer-section {
+  @apply max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8
+}
+
+.footer-container {
+  @apply flex flex-col md:flex-row justify-between items-center
+}
+
+.footer-title {
+  @apply mb-4 md:mb-0
+}
+
+.footer-title h2 {
+  @apply text-xl font-bold text-[#241C1C]
+}
+
+.footer-title p {
+  @apply text-sm text-[#A20100]
+}
+
+.footer-nav {
+  @apply flex space-x-6 mb-4 md:mb-0
+}
+
+.footer-nav a {
+  @apply hover:text-gray-900 text-sm
+}
+
+.footer-social {
+  @apply flex space-x-4
+}
+
+.footer-social a {
+  @apply hover:text-gray-900 text-[#241C1C]
+}
+
+.copyright {
+  @apply mt-8 border-t border-[#241C1C] pt-4 text-center text-sm text-[#241C1C]
 }

@@ -63,11 +63,7 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button
-            type="button"
-            className="reg-password"
-            onClick={() => setShowPassword(!showPassword)}
-          >
+          <button type="button" className="reg-password" onClick={() => setShowPassword(!showPassword)} >
             {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
           </button>
         </div>

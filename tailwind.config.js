@@ -10,6 +10,7 @@ export default {
         primary: ["Coolvetica", "sans-serif"],    
         bop: ["BirdsOfParadise", "cursive"],     
         helvetica: ["HelveticaCustom", "sans-serif"],
+        poppins: ["'Poppins'", "sans-serif"]
       },
     },
   },

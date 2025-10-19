@@ -16,10 +16,10 @@ import mintchoco from "../assets/flavors/mintchoco.png"
 import vanilla from "../assets/flavors/vanilla.png"
 
 export const navItems = [
-  { label: "About", href: "#" },
-  { label: "Discover", href: "#" },
-  { label: "Ingredients", href: "#" },
-  { label: "FAQ", href: "#" },
+  { label: "About", href: "#about" },
+  { label: "Discover", href: "#discover" },
+  { label: "Origin", href: "#origin" },
+  { label: "FAQ", href: "#faq" },
 ];
 
 export const features = [
@@ -55,6 +55,7 @@ export const flavors = [
       fat: "22g fat",
       protein: "18g protein",
     },
+    price: 250
   },
   {
     name: "Kyoto White Bloom",
@@ -65,6 +66,7 @@ export const flavors = [
       fat: "25g fat",
       protein: "17g protein",
     },
+    price: 300
   },
   {
     name: "Gianduja Luxe",
@@ -75,6 +77,7 @@ export const flavors = [
       fat: "32g fat",
       protein: "20g protein",
     },
+    price: 320
   },
   {
     name: "Berry Shortcake Dream",
@@ -85,6 +88,7 @@ export const flavors = [
       fat: "20g fat",
       protein: "16g protein",
     },
+    price: 270
   },
   {
     name: "Monkey King's Delight",
@@ -95,6 +99,7 @@ export const flavors = [
       fat: "30g fat",
       protein: "18g protein",
     },
+    price: 280
   },
   {
     name: "Velvet Ube Crown",
@@ -105,6 +110,7 @@ export const flavors = [
       fat: "27g fat",
       protein: "17g protein",
     },
+    price: 260
   },
   {
     name: "Frostbite Chips",
@@ -115,6 +121,7 @@ export const flavors = [
       fat: "25g fat",
       protein: "18g protein",
     },
+    price: 270
   },
   {
     name: "Velour Vanilla Bean",
@@ -125,6 +132,7 @@ export const flavors = [
       fat: "22g fat",
       protein: "16g protein",
     },
+    price: 240
   },
 ];
 
