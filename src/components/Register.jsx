@@ -16,7 +16,7 @@ function Register() {
     });
 
     const [confirmPassword, setConfirmPassword] = useState("");
-
+    const [termsAccepted, setTermsAccepted] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
@@ -51,6 +51,11 @@ function Register() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        if (!termsAccepted) {
+            setErrorMessage("You must accept the terms and conditions.");
+            return;
+        }
+
         if (formData.password !== confirmPassword) {
             setErrorMessage("Passwords do not match.");
             return;
@@ -83,6 +88,8 @@ function Register() {
                 return "Enter your card number";
             case "Bank Transfer":
                 return "Enter your bank account number";
+            case "Cash on Delivery":
+                return "";
             default:
                 return "Enter payment details";
         }
@@ -179,13 +186,29 @@ function Register() {
                     className={formData.paymentMethod === "Cash on Delivery" ? "bg-gray-200 cursor-not-allowed" : ""}
                 />
 
+                <label className="terms-checkbox">
+                    <input
+                        type="checkbox"
+                        checked={termsAccepted}
+                        onChange={() => setTermsAccepted(!termsAccepted)}
+                        required
+                    />
+                    <span>
+                        I agree to the{" "} <a href="/terms"> Terms and Conditions </a>
+                    </span>
+                </label>
+
                 {errorMessage && (
                     <p className="error-text">
                         {errorMessage}
                     </p>
                 )}
 
-                <button type="submit" className="register-btn">Register</button>
+                <button type="submit" 
+                className={`register-btn ${!termsAccepted ? "opacity-50 cursor-not-allowed" : ""}`}
+                disabled={!termsAccepted}>
+                    Register
+                </button>
 
                 <p className="create-acc">
                     Already have an account?{" "}

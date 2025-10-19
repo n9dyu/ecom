@@ -54,6 +54,15 @@ const ProfileModal = ({ isOpen, onClose }) => {
       return;
     }
 
+    if (name === "paymentMethod") {
+        setUserData((prev) => ({
+        ...prev,
+        paymentMethod: value,
+        paymentDetails: value === "Cash on Delivery" ? "" : prev.paymentDetails,
+        }));
+        return;
+    }
+
         setUserData((prev) => ({ ...prev, [name]: value }));
     };
 
@@ -75,11 +84,6 @@ const ProfileModal = ({ isOpen, onClose }) => {
             return;
         }
 
-        if (!userData.paymentDetails) {
-            setErrorMessage("Payment details are required.");
-            return;
-        }
-
         if (userData.paymentMethod !== "Cash on Delivery" && !userData.paymentDetails) {
             setErrorMessage("Payment details are required for this payment method.");
             return;
@@ -87,6 +91,7 @@ const ProfileModal = ({ isOpen, onClose }) => {
 
         setErrorMessage("");
         localStorage.setItem("userData", JSON.stringify(userData));
+        window.dispatchEvent(new Event("userDataUpdated"));
         onClose();
     };
 

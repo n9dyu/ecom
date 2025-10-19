@@ -117,6 +117,22 @@
   @apply text-red-600 mt-0 mb-4 text-center text-sm
 }
 
+.terms-checkbox {
+  @apply flex items-center space-x-2 cursor-pointer;
+}
+
+.terms-checkbox input {
+  @apply w-4 h-4;
+}
+
+.terms-checkbox span {
+  @apply text-sm;
+}
+
+.terms-checkbox a {
+  @apply text-blue-600 underline;
+}
+
 /* NAVIGATION BAR */
 
 .nav-bar {
@@ -132,7 +148,7 @@
 }
 
 .nav-list {
-  @apply hidden lg:flex ml-14 space-x-12 list-none text-[#A20100] 
+  @apply hidden lg:flex ml-14 space-x-12 list-none text-[#FFB7B7]
 }
 
 .nav-cart {
@@ -151,35 +167,34 @@
 /* HERO SECTION */
 
 .hero-section {
-  @apply relative bg-white overflow-hidden;
+  @apply relative bg-[linear-gradient(to_bottom,_#FFFFFF_0%,_#FFFFFF_98%,_#A20100_100%)] overflow-hidden;
 }
 
 .hero-content {
-  @apply flex flex-col lg:flex-row items-center justify-between px-10 lg:px-20 pb-40 relative z-20;
+  @apply flex flex-col lg:flex-row items-center justify-between px-10 lg:px-40 pb-40 relative z-20;
 }
 
-/* Left side (text) */
 .hero-text {
   @apply lg:w-1/2 flex flex-col items-start text-[#241C1C];
 }
 
 .hero-text h1 {
-  @apply font-[Italianno] text-6xl sm:text-7xl lg:text-8xl text-[#A20100];
+  @apply text-8xl sm:text-7xl lg:text-8xl text-[#A20100] pb-5;
+  font-family: "BirdsOfParadise";
 }
 
 .hero-text h2 {
-  @apply text-xl sm:text-2xl lg:text-3xl font-bold text-[#A20100] mt-2;
+  @apply text-xl sm:text-2xl lg:text-4xl font-bold text-[#A20100] mt-2;
 }
 
 .hero-text p {
-  @apply mt-6 sm:mt-8 text-sm sm:text-lg lg:text-xl max-w-xl;
+  @apply mt-6 sm:mt-8 text-sm sm:text-lg lg:text-2xl max-w-xl;
 }
 
 .hero-btn {
   @apply mt-8 bg-[#A20100] text-white italic px-8 py-3 rounded-full shadow-[0px_4px_0px_rgba(0,0,0,0.3)] hover:bg-pink-400 transition;
 }
 
-/* Right side (image) */
 .hero-right {
   @apply lg:w-1/2 flex justify-center mt-10 lg:mt-0 relative;
 }
@@ -188,7 +203,6 @@
   @apply w-full max-w-md lg:max-w-xl object-contain z-10;
 }
 
-/* Background drip */
 .hero-drip {
   @apply absolute bottom-0 left-0 w-full h-auto z-0;
 }
@@ -251,85 +265,90 @@
 
 /* MAIN SECTION */
 
-.discover-section {
-  @apply min-h-screen bg-white relative overflow-hidden
+.discover-section { 
+  @apply min-h-auto pb-20 bg-white relative overflow-hidden 
 }
 
-.discover-section img {
-  @apply w-full object-cover
+.discover-section img { 
+  @apply w-full object-cover 
 }
 
-.discover-container {
-  @apply max-w-full mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 py-12 px-15 items-center
+.discover-container { 
+  @apply max-w-full mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 py-12 px-15 items-center 
 }
 
-.flavor-list {
-  @apply flex flex-col gap-4 text-2xl items-center
+.flavor-list { 
+  @apply flex flex-col gap-4 text-2xl items-center 
 }
 
-.flavor-list h2 {
-  @apply text-[#A20100] text-7xl mb-4;
-  font-family: BirdsofParadise, serif;
+.flavor-list h2 { 
+  @apply text-[#A20100] text-7xl mb-4; font-family: BirdsofParadise, serif; 
 }
 
-.flavor-list button {
-  @apply text-start
+.flavor-list button { 
+  @apply text-start 
 }
 
-.flavor {
-  @apply flex justify-center relative
+.flavor { 
+  @apply flex justify-center relative 
 }
 
-.add-btn {
-  @apply absolute -bottom-8 bg-white rounded-full shadow-md w-12 h-12 flex items-center justify-center z-20 cursor-pointer
+.add-btn { 
+  @apply absolute -bottom-8 bg-white rounded-full shadow-md w-12 h-12 flex items-center justify-center z-20 cursor-pointer 
 }
 
-.details-container {
-  @apply flex flex-col gap-6 items-center
+.details-container { 
+  @apply flex flex-col gap-6 items-center 
 }
 
-.details-container h2 {
-  @apply text-[#A20100] text-7xl;
-  font-family: BirdsofParadise, serif;
+.details-container h2 { 
+  @apply text-[#A20100] text-7xl; 
+  font-family: BirdsofParadise, serif; 
 }
 
-.details-container p {
-  @apply text-[#241C1C] leading-tight text-2xl text-end my-10 ml-10
+.details-container p { 
+  @apply text-[#241C1C] leading-tight text-2xl text-end my-10 ml-10 
 }
 
-.tag-card {
-  @apply relative w-48
+.tag-card { 
+  @apply relative w-48 
 }
 
-.tag-content {
-  @apply absolute inset-0 flex flex-col items-center justify-center px-4 text-sm
+.tag-content { 
+  @apply absolute inset-0 flex flex-col items-center justify-center px-4 text-sm 
 }
 
-.tag-content span {
-  @apply text-[#A20100]
+.tag-content span { 
+  @apply text-[#A20100] 
+}
+
+@media (max-width: 640px) {
+  .details-container h2 {
+    display: none;
+  }
 }
 
 
 /* ORIGIN SECTION */
 
 .origin-section {
-  @apply min-h-auto bg-white relative overflow-hidden
+  @apply relative bg-[linear-gradient(to_bottom,_#FFFFFF_0%,_#FFFFFF_90%,_#A20100_100%)] overflow-hidden;
 }
 
 .origin-section img {
-  @apply w-full object-cover -bottom-40
+  @apply w-full object-cover -bottom-40 
 }
 
 .origin-container {
-  @apply max-w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 py-12 px-40 items-center
+  @apply max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 py-12 px-6 sm:px-10 lg:px-16 xl:px-24 items-center;
 }
 
 .origin-info {
-  @apply flex flex-col gap-4 text-2xl items-start
+  @apply flex flex-col gap-4 text-lg sm:text-xl lg:text-2xl;
 }
 
 .origin-info h2 {
-  @apply text-[#A20100] text-8xl mb-4;
+  @apply text-[#A20100] text-6xl sm:text-6xl md:text-6xl lg:text-6xl xl:text-7xl mb-4;
   font-family: BirdsofParadise, serif;
 }
 
@@ -344,6 +363,22 @@
 .milk-photo {
   @apply absolute -bottom-8 bg-white shadow-md w-100 h-auto flex items-center justify-center z-10
 }
+
+@media (min-width: 1024px) {
+  .milk-photo {
+    margin-top: -15%;
+  }
+}
+
+@media (max-width: 640px) {
+  .milk {
+    display: none;
+  }
+  .origin-info {
+    text-align: center;
+  }
+}
+
 
 
 /* FAQ SECTION */
@@ -410,7 +445,7 @@
 }
 
 .close-btn {
-  @apply absolute top-5 right-5 text-gray-500 hover:text-red-600
+  @apply absolute top-5 right-5 text-gray-500 hover:text-[#A20100]
 }
 
 .checkout-title {
@@ -431,7 +466,7 @@
 }
 
 .success {
-  @apply text-green-600 mb-4
+  @apply text-green-800 mt-5 items-center justify-center text-center
 }
 
 .default {
@@ -439,7 +474,7 @@
 }
 
 .payment-list{
-  @apply text-[#A20100] font-semibold
+  @apply text-[#A20100] 
 }
 
 .cart-order {
@@ -572,5 +607,5 @@ footer {
 }
 
 .logout-close {
-  
+
 }

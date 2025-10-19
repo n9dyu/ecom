@@ -20,7 +20,7 @@ export default function Discover({ onAddToCart }) {
                     <h2>Discover</h2>
                     {flavors.map((flavor, index) => (
                         <button key={ index } onClick={() => setActiveFlavor(flavor)}
-                            className={`text-start transition hover:text-[#A20100] ${
+                            className={`text-start cursor-pointer transition hover:text-[#A20100] ${
                                 activeFlavor.name === flavor.name
                                 ? "text-[#A20100]"
                                 : "text-[#241C1C]"

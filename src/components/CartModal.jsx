@@ -12,11 +12,15 @@ const CartModal = ({ isOpen, onClose, cartItems = [], onQuantityChange, onRemove
     const total = subtotal + shippingFee;
 
     useEffect(() => {
-        const stored = localStorage.getItem("userData");
-        if (stored) {
-            setUserData(JSON.parse(stored));
+        if (isOpen) {
+            const stored = localStorage.getItem("userData");
+            if (stored) {
+                setUserData(JSON.parse(stored));
+            } else {
+                setUserData(null);
+            }
         }
-    }, []);
+    }, [isOpen]);
 
     if (!isOpen) return null;
 
@@ -40,12 +44,6 @@ const CartModal = ({ isOpen, onClose, cartItems = [], onQuantityChange, onRemove
                 <button className="close-btn" onClick={onClose}>
                     <X size={24} />
                 </button>
-
-                {orderSuccess && (
-                    <p className="success">
-                        ✅ Order placed successfully! Thank you for your purchase.
-                    </p>
-                )}
 
                 <h1 className="checkout-title">Checkout</h1>
 
@@ -94,12 +92,9 @@ const CartModal = ({ isOpen, onClose, cartItems = [], onQuantityChange, onRemove
 
                                     <p className="price">₱{Number(item.price || 0) * item.quantity}</p>
 
-                                    <button
-                                    className="delete-btn text-red-500 font-bold"
-                                    onClick={() => onRemoveItem(item.name)}
-                                >
-                                    Delete
-                                </button>
+                                    <button className="close-btn" onClick={() => onRemoveItem(item.name)}>
+                                        Delete
+                                    </button>
                                 </div>
                             </div>
                         ))}
@@ -107,18 +102,31 @@ const CartModal = ({ isOpen, onClose, cartItems = [], onQuantityChange, onRemove
                         <div className="border-t border-gray-300 my-4"></div>
 
                         <div className="flex justify-between text-xs mb-2">
-                            <span className="uppercase">Shipping Fee</span>
+                            <span>SHIPPING FEE</span>
                             <span>₱{shippingFee}</span>
                         </div>
 
-                        <div className="flex justify-between font-bold text-lg mb-6">
+                        <div className="flex justify-between text-lg mb-6">
                             <span>Total</span>
                             <span>₱{total}</span>
                         </div>
 
-                        <button className="checkout-btn" onClick={handleCheckout}>
+                        <button 
+                            onClick={handleCheckout}
+                            disabled={cartItems.length === 0}
+                            className={`checkout-btn w-full py-2 rounded ${
+                                cartItems.length === 0
+                                ? "bg-gray-400 cursor-not-allowed"
+                                : "bg-blue-600 hover:bg-blue-700"
+                            } text-white`}>
                             CHECK OUT
                         </button>
+
+                        {orderSuccess && (
+                            <p className="success">
+                                ✅ Order placed successfully! Thank you for your purchase.
+                            </p>
+                        )}
                     </div>
                 </div>
             </div>

@@ -78,7 +78,7 @@ function Home() {
       </div>
       <About />
       <Discover onAddToCart={handleAddToCart} />
-      <div className="mx-auto pt-20">
+      <div className="mx-auto">
         <Origin />
       </div>
       <FAQ />
@@ -102,7 +102,7 @@ function Home() {
         isOpen={isLogoutOpen}
         onClose={() => setLogoutOpen(false)}
         onConfirm={() => {
-          localStorage.removeItem("userData"); 
+          localStorage.removeItem("isLoggedIn"); 
           setLogoutOpen(false);
           navigate("/login"); 
         }}

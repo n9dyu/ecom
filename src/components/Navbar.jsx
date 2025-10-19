@@ -45,13 +45,13 @@ function Navbar({ onCartToggle, onProfileToggle, onLogoutToggle}) {
                     </ul>
 
                     <div className="nav-cart">
-                        <button onClick={onCartToggle} className="size-5 text-[#A20100] cursor-pointer">
+                        <button onClick={onCartToggle} className="size-5 text-[#FFB7B7] cursor-pointer">
                             <ShoppingBag />
                         </button>
-                        <button onClick={onProfileToggle} className="size-5 text-[#A20100] cursor-pointer">
+                        <button onClick={onProfileToggle} className="size-5 text-[#FFB7B7] cursor-pointer">
                             <UserStar />
                         </button>
-                        <button onClick={onLogoutToggle} className="size-5 text-[#A20100] cursor-pointer">
+                        <button onClick={onLogoutToggle} className="size-5 text-[#FFB7B7] cursor-pointer">
                             <LogOut />
                         </button>
                     </div>
